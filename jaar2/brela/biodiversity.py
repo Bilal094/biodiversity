@@ -1,5 +1,5 @@
 import psycopg2
-from queries import create_county
+from queries import *
 
 DB_NAME = 'biodiversity'
 DB_USER = 'postgres'
@@ -17,9 +17,9 @@ try:
 
     cursor = conn.cursor()
 
-    create_county_table = create_county()
+    execute_queries(cursor)
 
-    cursor.execute(create_county_table)
     conn.commit()
+    print('Tabellen succesvol aangemaakt')
 except psycopg2.Error as e:
     print(f'Er is een error opgetreden: {e}')

@@ -12,7 +12,7 @@ def create_sighting():
                     scientific_name VARCHAR(50),
                     year DATE,
 
-                    FOREIGN KEY (county_name) REFERENCES county(county_name)
+                    FOREIGN KEY (county_name) REFERENCES county(county_name),
                     FOREIGN KEY (scientific_name) REFERENCES biological_entity(scientific_name)
                 )
             """
@@ -25,7 +25,7 @@ def create_biological_entity():
                 subtax_name VARCHAR(50),
                 description VARCHAR(50),
 
-                FOREIGN KEY (subtax_name) REFERENCES subtax(subtax_name)
+                FOREIGN KEY (subtax_name) REFERENCES subtax(subtax_name),
                 FOREIGN KEY (description) REFERENCES status(description)
             )
         """
@@ -47,9 +47,23 @@ def create_subtax():
             )
         """
 
-def create_subtax():
-    return """ CREATE TABLE IF NOT EXISTS taxonomny
+def create_taxonomy():
+    return """ CREATE TABLE IF NOT EXISTS taxonomy
             (
                 tax_name VARCHAR(50) PRIMARY KEY
             )
         """
+
+def execute_queries(cursor):
+    queries = [
+        create_county(),
+        create_status(),
+        create_taxonomy(),
+        create_subtax(),
+        create_biological_entity(),
+        create_sighting()
+    ]
+
+    for query in range(len(queries)):
+        cursor.execute(queries[query])
+
