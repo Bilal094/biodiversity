@@ -66,4 +66,3 @@ def execute_queries(cursor):
 
     for query in range(len(queries)):
         cursor.execute(queries[query])
-
