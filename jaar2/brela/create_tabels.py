@@ -10,7 +10,7 @@ def create_sighting():
                 (
                     county_name VARCHAR(50),
                     scientific_name VARCHAR(50),
-                    year DATE,
+                    year INTEGER,
 
                     FOREIGN KEY (county_name) REFERENCES county(county_name),
                     FOREIGN KEY (scientific_name) REFERENCES biological_entity(scientific_name)
